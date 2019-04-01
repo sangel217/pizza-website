@@ -1,17 +1,22 @@
 //Business Logic
 function PizzaOrder(toppings, sauce, size) {
-  this.toppings = [];
-  this.sauce = [];
+  this.toppings = toppings;
+  this.sauce = sauce;
   this.size = size;
 }
 
 PizzaOrder.prototype.finalPizza = function() {
-  var cost = [];
-  for (var i = 0; i <= this.toppings.length; i ++) {
-       cost.push(i);
-     }
-     return cost;
+  var cost = 0
+  if (this.toppings.length <= 3 && this.sauce.length === 1 && this.size === 'small'){
+    return cost + 5
+  } else if(this.toppings.length <= 3 && this.sauce.length === 1 && this.size === 'medium'){
+    return cost + 8
+  } else if(this.toppings.length <= 3 && this.sauce.length === 1 && this.size === 'large'){
+    return cost + 11
+  } else {
+    return cost + 15
   }
+}
 
 
 $(document).ready(function(){
@@ -34,7 +39,7 @@ $(document).ready(function(){
 
     var InputPizzaOrder = new PizzaOrder(toppingsInput, sauceInput, sizeInput);
 
-    $('#pizza').text(InputPizzaOrder.finalPizza());
+    $('#pizza').text('$' + InputPizzaOrder.finalPizza());
 
   })
 })
